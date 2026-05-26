@@ -33,8 +33,8 @@ public class LevelManager : MonoBehaviour
         int star = CalculateStar(moveCount);
 
         Debug.Log("Level selesai!");
-        Debug.Log("Nama level: " + levelData.levelName);
+        Debug.Log("Nama Level: " + levelData.levelName);
         Debug.Log("Jumlah langkah: " + moveCount);
-        Debug.Log("Bintang yang didapat: " + star);
+        Debug.Log("Bintang: " + star);
     }
 }
