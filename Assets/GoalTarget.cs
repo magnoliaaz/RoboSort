@@ -10,7 +10,9 @@ public class GoalTarget : MonoBehaviour
         if (bendaYangMasuk.CompareTag("Box"))
         {
             Debug.Log("Box masuk ke target!");
-            
+
+            AudioManager.Instance.PlayGoal();
+
             if (teksMenang != null)
             {
                 teksMenang.SetActive(true);
