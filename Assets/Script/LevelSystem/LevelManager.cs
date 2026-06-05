@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -6,10 +7,8 @@ public class LevelManager : MonoBehaviour
     public LevelData levelData;
     public int levelIndex;
 
-
     private void Start()
     {
-        
         Debug.Log("Level Manager Siap! Menunggu Player menyelesaikan level...");
     }
 
@@ -38,5 +37,12 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Jumlah langkah aslimu: " + moveCount);
         Debug.Log("Bintang yang didapat: " + star + " Bintang ⭐️");
         Debug.Log("=====================");
+    }
+
+    // Tambahan untuk trap
+    public void RestartLevel()
+    {
+        Debug.Log("Restart Level dipanggil!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
