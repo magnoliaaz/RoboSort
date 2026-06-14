@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelData: {fileID: 11400000, guid: 6704e8250ee88eb4c8afca850482fefd, type: 2}
-  levelIndex: 2
+  levelIndex: 3
 --- !u!1001 &1455819708
 PrefabInstance:
   m_ObjectHideFlags: 0
