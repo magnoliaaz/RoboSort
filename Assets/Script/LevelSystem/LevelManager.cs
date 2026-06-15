@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Data Aturan Level")]
     public LevelData levelData;
     public int levelIndex;
 
-    public int testMoveCount = 18;
 
     private void Start()
     {
-        CompleteLevel(testMoveCount);
+        
+        Debug.Log("Level Manager Siap! Menunggu Player menyelesaikan level...");
     }
 
     public int CalculateStar(int moveCount)
@@ -32,9 +33,10 @@ public class LevelManager : MonoBehaviour
     {
         int star = CalculateStar(moveCount);
 
-        Debug.Log("Level selesai!");
+        Debug.Log("=== LEVEL SELESAI ===");
         Debug.Log("Nama Level: " + levelData.levelName);
-        Debug.Log("Jumlah langkah: " + moveCount);
-        Debug.Log("Bintang: " + star);
+        Debug.Log("Jumlah langkah aslimu: " + moveCount);
+        Debug.Log("Bintang yang didapat: " + star + " Bintang ⭐️");
+        Debug.Log("=====================");
     }
 }
