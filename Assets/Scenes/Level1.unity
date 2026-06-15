@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelData: {fileID: 11400000, guid: dee611e14f2bf164397248fc8982ad7d, type: 2}
-  levelIndex: 0
+  levelIndex: 1
 --- !u!1 &1586482222
 GameObject:
   m_ObjectHideFlags: 0
