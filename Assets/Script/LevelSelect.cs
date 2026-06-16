@@ -21,27 +21,30 @@ public class LevelSelect : MonoBehaviour
     [Header("Stars UI Level 3")]
     public GameObject[] level3Stars;
 
-    private void Start()
-    {
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+   private void Start()
+{
+    int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
-        // LOCK SYSTEM
-        level2Button.interactable = unlockedLevel >= 2;
-        level3Button.interactable = unlockedLevel >= 3;
+    // LOCK SYSTEM
+    level2Button.interactable = unlockedLevel >= 2;
+    level3Button.interactable = unlockedLevel >= 3;
 
-        lock2.SetActive(unlockedLevel < 2);
-        lock3.SetActive(unlockedLevel < 3);
+    lock2.SetActive(unlockedLevel < 2);
+    lock3.SetActive(unlockedLevel < 3);
 
-        // LOAD STARS
-        int star1 = PlayerPrefs.GetInt("Level1_Star", 0);
-        int star2 = PlayerPrefs.GetInt("Level2_Star", 0);
-        int star3 = PlayerPrefs.GetInt("Level3_Star", 0);
+    // LOAD STARS
+    int star1 = PlayerPrefs.GetInt("Level1_Star", 0);
+    int star2 = PlayerPrefs.GetInt("Level2_Star", 0);
+    int star3 = PlayerPrefs.GetInt("Level3_Star", 0);
 
-        SetStars(level1Stars, star1);
-        SetStars(level2Stars, star2);
-        SetStars(level3Stars, star3);
-    }
+    SetStars(level1Stars, star1);
+    SetStars(level2Stars, star2);
+    SetStars(level3Stars, star3);
 
+    Debug.Log("Level1_Star = " + star1);
+    Debug.Log("Level2_Star = " + star2);
+    Debug.Log("Level3_Star = " + star3);
+}
     void SetStars(GameObject[] stars, int count)
     {
         for (int i = 0; i < stars.Length; i++)

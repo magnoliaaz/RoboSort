@@ -47,10 +47,7 @@ public class LevelManager : MonoBehaviour
 
         int oldStar = PlayerPrefs.GetInt(key, 0);
 
-        if (star > oldStar)
-        {
-            PlayerPrefs.SetInt(key, star);
-        }
+        PlayerPrefs.SetInt(key, star);
 
         // unlock next level
         int unlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
