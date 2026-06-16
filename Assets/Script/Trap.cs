@@ -10,7 +10,9 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Box"))
         {
             Debug.Log(other.name + " kena spike! Restart level");
+            AudioManager.Instance.PlaySpike();
             levelManager.RestartLevel();
+
         }
     }
 }

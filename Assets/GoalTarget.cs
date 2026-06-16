@@ -10,7 +10,7 @@ public class GoalTarget : MonoBehaviour
         {
             isFilled = true;
             Debug.Log("Satu Box masuk target!");
-            
+            AudioManager.Instance.PlayGoal();
 
             CekKemenangan(); 
         }

@@ -4,28 +4,34 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [Header("Sound Effects")]
     public AudioClip goalSound;
     public AudioClip spikeSound;
 
-    private AudioSource source;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+            return;
+        }
 
-        source = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayGoal()
     {
-        source.PlayOneShot(goalSound);
+        audioSource.PlayOneShot(goalSound);
     }
 
     public void PlaySpike()
     {
-        source.PlayOneShot(spikeSound);
+        audioSource.PlayOneShot(spikeSound);
     }
 }
