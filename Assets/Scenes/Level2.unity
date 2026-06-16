@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   jumlahLangkah: 0
   teksLangkahUI: {fileID: 480709330}
+  jarakLangkah: 1
 --- !u!50 &127059862
 Rigidbody2D:
   serializedVersion: 5
@@ -2150,6 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelData: {fileID: 11400000, guid: 54d04d4428227724986f2291c9a0ec87, type: 2}
   levelIndex: 2
+  uiMenang: {fileID: 0}
 --- !u!1 &1402464454
 GameObject:
   m_ObjectHideFlags: 0

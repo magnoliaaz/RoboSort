@@ -9,94 +9,73 @@ public class LevelManager : MonoBehaviour
     [Tooltip("Level1 = 1, Level2 = 2, Level3 = 3")]
     public int levelIndex;
 
+    [Header("Referensi UI Kemenangan")]
+    [Tooltip("Tarik objek Canvas Win UI buatan temanmu ke sini!")]
+    public WinUI uiMenang; 
+
     private const int MAX_LEVEL = 3;
 
     private void Start()
     {
         Debug.Log("Level Manager Siap! Menunggu Player menyelesaikan level...");
-
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
-        Debug.Log("Unlocked Level = " + unlockedLevel);
     }
 
     public int CalculateStar(int moveCount)
     {
-        if (moveCount <= levelData.threeStarMoveLimit)
-            return 3;
-
-        if (moveCount <= levelData.twoStarMoveLimit)
-            return 2;
-
+        if (moveCount <= levelData.threeStarMoveLimit) return 3;
+        if (moveCount <= levelData.twoStarMoveLimit) return 2;
         return 1;
     }
 
     public void CompleteLevel(int moveCount)
     {
-        int star = CalculateStar(moveCount);
+        int jumlahBintang = CalculateStar(moveCount);
+        SaveProgress(jumlahBintang);
 
-        Debug.Log("=== LEVEL SELESAI ===");
-        Debug.Log("Nama Level: " + levelData.levelName);
-        Debug.Log("Jumlah langkah: " + moveCount);
-        Debug.Log("Bintang didapat: " + star);
-        Debug.Log("=====================");
+        Debug.Log("Menang! Langkah: " + moveCount + " | Bintang: " + jumlahBintang);
 
-        SaveProgress(star);
+        
+        WinUI uiMenang = FindFirstObjectByType<WinUI>(FindObjectsInactive.Include);
+        
+        if (uiMenang != null)
+        {
+            uiMenang.gameObject.SetActive(true); 
 
-        Invoke(nameof(LoadNextLevel), 2f);
+            uiMenang.ShowWin(jumlahBintang); 
+        }
+        else
+        {
+            Debug.LogError("Gawat, WinUI beneran nggak ada di Scene! Pastikan Canvas UI temanmu udah dimasukkan ke layar.");
+        }
     }
 
     private void SaveProgress(int star)
     {
-        // Simpan bintang terbaik
         string starKey = "Level" + levelIndex + "_Star";
-
         int oldStar = PlayerPrefs.GetInt(starKey, 0);
 
-        if (star > oldStar)
-        {
-            PlayerPrefs.SetInt(starKey, star);
-        }
+        if (star > oldStar) PlayerPrefs.SetInt(starKey, star);
 
-        // Unlock level berikutnya (maksimal Level 3)
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
-
         if (levelIndex >= unlockedLevel && levelIndex < MAX_LEVEL)
         {
             PlayerPrefs.SetInt("UnlockedLevel", levelIndex + 1);
         }
 
         PlayerPrefs.Save();
-
-        Debug.Log("Progress berhasil disimpan!");
     }
 
     public void LoadNextLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-
         if (currentScene < SceneManager.sceneCountInBuildSettings - 1)
         {
             SceneManager.LoadScene(currentScene + 1);
-        }
-        else
-        {
-            Debug.Log("Selamat! Semua level telah selesai.");
         }
     }
 
     public void RestartLevel()
     {
-        Debug.Log("Restart Level dipanggil!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    // Opsional untuk testing
-    [ContextMenu("Reset Save Data")]
-    public void ResetSaveData()
-    {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-
-        Debug.Log("Semua save data berhasil dihapus.");
     }
 }
