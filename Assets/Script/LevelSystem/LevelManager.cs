@@ -10,14 +10,13 @@ public class LevelManager : MonoBehaviour
     public int levelIndex;
 
     [Header("Referensi UI Kemenangan")]
-    [Tooltip("Tarik objek Canvas Win UI buatan temanmu ke sini!")]
-    public WinUI uiMenang; 
+    public WinUI uiMenang;
 
     private const int MAX_LEVEL = 3;
 
     private void Start()
     {
-        Debug.Log("Level Manager Siap! Menunggu Player menyelesaikan level...");
+        Debug.Log("Level Manager Ready");
     }
 
     public int CalculateStar(int moveCount)
@@ -29,35 +28,34 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel(int moveCount)
     {
-        int jumlahBintang = CalculateStar(moveCount);
-        SaveProgress(jumlahBintang);
+        int star = CalculateStar(moveCount);
 
-        Debug.Log("Menang! Langkah: " + moveCount + " | Bintang: " + jumlahBintang);
+        SaveProgress(star);
 
-        
-        WinUI uiMenang = FindFirstObjectByType<WinUI>(FindObjectsInactive.Include);
-        
-        if (uiMenang != null)
+        WinUI winUI = FindFirstObjectByType<WinUI>(FindObjectsInactive.Include);
+
+        if (winUI != null)
         {
-            uiMenang.gameObject.SetActive(true); 
-
-            uiMenang.ShowWin(jumlahBintang); 
-        }
-        else
-        {
-            Debug.LogError("Gawat, WinUI beneran nggak ada di Scene! Pastikan Canvas UI temanmu udah dimasukkan ke layar.");
+            winUI.gameObject.SetActive(true);
+            winUI.ShowWin(star);
         }
     }
 
     private void SaveProgress(int star)
     {
-        string starKey = "Level" + levelIndex + "_Star";
-        int oldStar = PlayerPrefs.GetInt(starKey, 0);
+        string key = "Level" + levelIndex + "_Star";
 
-        if (star > oldStar) PlayerPrefs.SetInt(starKey, star);
+        int oldStar = PlayerPrefs.GetInt(key, 0);
 
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
-        if (levelIndex >= unlockedLevel && levelIndex < MAX_LEVEL)
+        if (star > oldStar)
+        {
+            PlayerPrefs.SetInt(key, star);
+        }
+
+        // unlock next level
+        int unlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
+
+        if (levelIndex >= unlocked && levelIndex < MAX_LEVEL)
         {
             PlayerPrefs.SetInt("UnlockedLevel", levelIndex + 1);
         }
@@ -67,10 +65,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        if (currentScene < SceneManager.sceneCountInBuildSettings - 1)
+        int current = SceneManager.GetActiveScene().buildIndex;
+
+        if (current < SceneManager.sceneCountInBuildSettings - 1)
         {
-            SceneManager.LoadScene(currentScene + 1);
+            SceneManager.LoadScene(current + 1);
         }
     }
 

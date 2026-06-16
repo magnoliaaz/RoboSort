@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinUI : MonoBehaviour
 {
@@ -10,14 +11,6 @@ public class WinUI : MonoBehaviour
         winPanel.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ShowWin(3);
-        }
-    }
-
     public void ShowWin(int starCount)
     {
         winPanel.SetActive(true);
@@ -26,5 +19,25 @@ public class WinUI : MonoBehaviour
         {
             stars[i].SetActive(i < starCount);
         }
+    }
+
+    public void RetryLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        int current = SceneManager.GetActiveScene().buildIndex;
+
+        if (current < SceneManager.sceneCountInBuildSettings - 1)
+        {
+            SceneManager.LoadScene(current + 1);
+        }
+    }
+
+    public void BackToLevelStage()
+    {
+        SceneManager.LoadScene("LevelStage");
     }
 }

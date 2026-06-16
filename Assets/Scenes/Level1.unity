@@ -1592,7 +1592,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1114709591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847885687}
+        m_TargetAssemblyTypeName: WinUI, Assembly-CSharp
+        m_MethodName: RetryLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1114709591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,7 +1906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e890384d9c834394ca7f7625d97542ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  levelData: {fileID: 11400000, guid: dee611e14f2bf164397248fc8982ad7d, type: 2}
+  levelData: {fileID: 11400000, guid: c6bcbb3fcfb2fbf46b972f692aba9eb9, type: 2}
   levelIndex: 1
   uiMenang: {fileID: 0}
 --- !u!1 &1586482222
@@ -2331,7 +2343,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1843855705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1847885687}
+        m_TargetAssemblyTypeName: WinUI, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1843855705
 MonoBehaviour:
   m_ObjectHideFlags: 0
