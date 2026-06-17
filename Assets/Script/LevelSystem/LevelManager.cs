@@ -15,9 +15,19 @@ public class LevelManager : MonoBehaviour
     private const int MAX_LEVEL = 3;
 
     private void Start()
+{
+    int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+
+    if (levelIndex > unlockedLevel)
     {
-        Debug.Log("Level Manager Ready");
+        Debug.Log("Level masih terkunci!");
+
+        SceneManager.LoadScene("LevelStage");
+        return;
     }
+
+    Debug.Log("Level Manager Ready");
+}
 
     public int CalculateStar(int moveCount)
     {
